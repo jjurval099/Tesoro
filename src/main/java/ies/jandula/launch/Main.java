@@ -1,7 +1,9 @@
 package ies.jandula.launch;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,8 +19,10 @@ public class Main
         {
             printWriter = new PrintWriter("Tesoro.csv");
             Scanner scanner = new Scanner(System.in);
-            Scanner scannerCSV = new Scanner("Tesoro.csv");
             Random random = new Random();
+            
+            File file = new File("Tesoro.csv");            
+            Scanner scannerCSV = new Scanner(file);
 
             int dimensiones;
 
@@ -29,7 +33,23 @@ public class Main
             } 
             while (dimensiones < 4);
 
-            creacionTablero(printWriter, random, dimensiones);
+            creacionTablero(printWriter, random, dimensiones);            
+            
+//--------------------------------------------------------------------------------------------
+            
+            scannerCSV.nextLine();
+            
+            while(scannerCSV.hasNextLine())
+            {            
+                String linea = scanner.nextLine();
+
+                if (!linea.isEmpty()) 
+                {
+                    String[] datos = linea.split(","); 
+                     
+                }
+            }
+            
         } 
         catch (FileNotFoundException fileNotFoundException) 
         {
@@ -99,7 +119,7 @@ public class Main
 		    }
 		}
 
-		printWriter.println("M = " + tablero.length + " -> " + numTesoro + " T, " + numBombas + " B, " + numNada + " N");
+		printWriter.println(tablero.length);
 		for (int i = 0; i < tablero.length; i++)
 		{
 		    for (int j = 0; j < tablero[i].length; j++) 
